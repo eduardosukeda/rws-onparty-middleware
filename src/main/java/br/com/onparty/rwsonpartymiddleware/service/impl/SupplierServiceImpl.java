@@ -33,6 +33,15 @@ public class SupplierServiceImpl implements SupplierService {
     }
 
     @Override
+    public SupplierDTO findByCnpj(String cnpj) {
+        RestClient restClient = new RestClient(server);
+        String json = restClient.get("cnpj/" + cnpj);
+        Gson gson = new Gson();
+        SupplierDTO supplierDTO = gson.fromJson(json, new TypeToken<SupplierDTO>() {}.getType());
+        return supplierDTO;
+    }
+
+    @Override
     public SupplierDTO create(SupplierDTO supplierDTO) {
         RestClient restClient = new RestClient(server);
         Gson gson = new Gson();

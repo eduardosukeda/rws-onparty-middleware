@@ -10,6 +10,8 @@ public interface SupplierService {
 
     public SupplierDTO findById(Integer id);
 
+    public SupplierDTO findByCnpj(String cnpj);
+
     public SupplierDTO create(SupplierDTO supplierDTO);
 
     public SupplierDTO update(SupplierDTO supplierDTO);

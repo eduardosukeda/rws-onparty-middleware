@@ -28,6 +28,11 @@ public class SupplierController {
         return ResponseEntity.ok(supplierService.findById(id));
     }
 
+    @GetMapping("/cnpj/{cnpj}")
+    public ResponseEntity<SupplierDTO> findByCnpj(@PathVariable String cnpj) {
+        return ResponseEntity.ok(supplierService.findByCnpj(cnpj));
+    }
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public ResponseEntity<SupplierDTO> create(@RequestBody SupplierDTO supplierDTO) {

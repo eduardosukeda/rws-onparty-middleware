@@ -2,6 +2,7 @@ package br.com.onparty.rwsonpartymiddleware.service.impl;
 
 import br.com.onparty.rwsonpartymiddleware.client.RestClient;
 import br.com.onparty.rwsonpartymiddleware.dto.CustomerDTO;
+import br.com.onparty.rwsonpartymiddleware.dto.SupplierDTO;
 import br.com.onparty.rwsonpartymiddleware.service.CustomerService;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -27,6 +28,15 @@ public class CustomerServiceImpl implements CustomerService {
     public CustomerDTO findById(Integer id) {
         RestClient restClient = new RestClient(server);
         String json = restClient.get(id.toString());
+        Gson gson = new Gson();
+        CustomerDTO customerDTO = gson.fromJson(json, new TypeToken<CustomerDTO>() {}.getType());
+        return customerDTO;
+    }
+
+    @Override
+    public CustomerDTO findByCnpj(String cnpj) {
+        RestClient restClient = new RestClient(server);
+        String json = restClient.get("cnpj/" + cnpj);
         Gson gson = new Gson();
         CustomerDTO customerDTO = gson.fromJson(json, new TypeToken<CustomerDTO>() {}.getType());
         return customerDTO;
